@@ -1,3 +1,4 @@
+@import url("https://use.typekit.net/wuz0gtr.css");
 .titles-container h3 {
   color: #4C3EFF;
   font-size: 2rem;
@@ -7,10 +8,14 @@
 .case-studies-container {
   width: 100%;
   display: flex;
-  gap: 1rem;
+  gap: 3rem;
+}
+.case-studies-container > * {
+  font-family: "proxima-nova", sans-serif;
 }
 .case-studies-container .left-side-container {
-  max-width: 70%;
+  width: 65%;
+  max-width: 850px;
   flex-grow: 1;
   padding: 3.5rem;
   background-repeat: no-repeat;
@@ -23,18 +28,26 @@
   gap: 1rem;
   max-width: 417px;
 }
-.case-studies-container .left-side-container .desc-container p, .case-studies-container .left-side-container .desc-container b {
+.case-studies-container .left-side-container .desc-container .apostrophes {
+  font-size: 5rem;
+  margin: 0;
+  max-height: 27.12px;
+  transform: translateY(-72px);
+}
+.case-studies-container .left-side-container .desc-container p,
+.case-studies-container .left-side-container .desc-container b {
   font-size: 1.563rem;
 }
 .case-studies-container .left-side-container .desc-container .company-logo {
   max-width: 60.26px;
 }
-.case-studies-container .left-side-container .desc-container .review-person-container .review-text-container .review-name, .case-studies-container .left-side-container .desc-container .review-person-container .review-text-container .review-job {
+.case-studies-container .left-side-container .desc-container .review-person-container .review-text-container .review-name,
+.case-studies-container .left-side-container .desc-container .review-person-container .review-text-container .review-job {
   font-size: 1.125rem;
   margin: 0;
 }
 .case-studies-container .right-side-container {
-  width: 30%;
+  width: 35%;
   display: flex;
   flex-direction: column;
   gap: 2rem;
@@ -48,12 +61,13 @@
   flex-direction: column;
   justify-content: center;
   background-color: #F3F5F7;
-  padding: 1rem;
+  padding: 40px;
 }
 .case-studies-container .right-side-container .right-side-title-container h2 {
   line-height: 6.3rem;
   font-size: 4.375rem;
   font-weight: 700;
+  font-family: "proxima-nova", sans-serif;
 }
 .case-studies-container .right-side-container .right-side-title-container p {
   font-size: 1.563rem;
@@ -62,13 +76,27 @@
   margin: 0;
 }
 .case-studies-container .right-side-container .cta-container {
+  position: relative;
   background-color: #080E3F;
   padding: 40px;
+  transition: 0.5s ease;
+  cursor: pointer;
 }
 .case-studies-container .right-side-container .cta-container a {
   color: #FFFFFF;
   font-size: 2rem;
   text-decoration: none;
+}
+.case-studies-container .right-side-container .cta-container .arrow {
+  font-size: 3rem;
+  color: #fff;
+  position: absolute;
+  top: 20px;
+  right: 15px;
+  margin: 0;
+}
+.case-studies-container .right-side-container .cta-container:hover {
+  background-color: #3d50dc;
 }
 
 .review-person-container {

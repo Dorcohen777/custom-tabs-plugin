@@ -210,7 +210,7 @@ function custom_tabs_value_shortcode()
         <article class='left-side-container' style='background-image: url($fieldSectionBgOne)'>
 
             <div class='desc-container'>
-                <img class='apostrophes' />
+                <a class='apostrophes'> &#x201E; </a>
                 <b class='desc-bold bold'> $fieldBoldDescriptionOne </b>
                 <p class='desc-text'> $fieldDescriptionOne </p>
                 <div class='review-person-container'>
@@ -230,7 +230,7 @@ function custom_tabs_value_shortcode()
                 <p>$fieldSubtitleRight</p>
             </div>
             <div class='cta-container'>
-                <img class='arrow'/>
+                <p class='arrow'>&#x2197;</p>
                 <a> $fieldCtaText </a>
             </div>
         </article>
