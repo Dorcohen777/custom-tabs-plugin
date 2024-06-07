@@ -67,7 +67,7 @@ function custom_tabs_settings_init()
         'field_cta_text' => 'CTA Text - item 1',
     ];
 
-    // Creating field
+    // Looping over the array of fields to add settings fields 
     foreach ($fields as $field_id => $field_title) {
         add_settings_field(
             $field_id,
@@ -79,6 +79,19 @@ function custom_tabs_settings_init()
     }
     ;
 
+}
+
+// Function that render and generate custom fields
+function custom_render_fields($field_id, $type = 'text')
+{
+    $options = get_option('custom_tabs_options');
+    $value = isset($options[$field_id]) ? esc_attr($options[$field_id]) : '';
+
+    if ($type == 'textarea') {
+        echo "<textarea name='custom_tabs_options[$field_id]'>$value</textarea>";
+    } else {
+        echo "<input type='text' name='custom_tabs_options[$field_id]' value='$value'>";
+    }
 }
 
 // Item 1 title
@@ -142,20 +155,6 @@ function render_field_cta_text()
 {
     custom_render_fields('field_cta_text');
 }
-
-// Function that render and generate custom fields
-function custom_render_fields($field_id, $type = 'text')
-{
-    $options = get_option('custom_tabs_options');
-    $value = isset($options[$field_id]) ? esc_attr($options[$field_id]) : '';
-
-    if ($type == 'textarea') {
-        echo "<textarea name='custom_tabs_options[$field_id]'>$value</textarea>";
-    } else {
-        echo "<input type='text' name='custom_tabs_options[$field_id]' value='$value'>";
-    }
-}
-
 
 // Callback function to display the section description
 function custom_tabs_settings_section_callback()
@@ -231,6 +230,7 @@ function custom_tabs_value_shortcode()
                 <p>$fieldSubtitleRight</p>
             </div>
             <div class='cta-container'>
+                <img class='arrow'/>
                 <a> $fieldCtaText </a>
             </div>
         </article>
