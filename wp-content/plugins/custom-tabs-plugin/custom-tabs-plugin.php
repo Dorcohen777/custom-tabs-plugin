@@ -34,6 +34,7 @@ function custom_tabs_settings_init()
         'custom_tabs_plugin' // Page slug
     );
 
+    // Case Study 1 Title
     add_settings_field(
         'custom_tabs_field_case_title_one', // Field ID 
         __('Case study 1 title', 'custom-tabs-plugin'), // Case Study 1 title
@@ -42,6 +43,25 @@ function custom_tabs_settings_init()
         'custom_tabs_plugin_section', // Section ID 
     );
 
+    // Case Study 1 Description
+    add_settings_field(
+        'custom_tabs_field_case_description_one', // Field ID 
+        __('Case study 1 description', 'custom-tabs-plugin'), // Case Study 1 title
+        'custom_tabs_field_case_description_one_render', // Callback to render the field
+        'custom_tabs_plugin', // Page Slug
+        'custom_tabs_plugin_section', // Section ID 
+    );
+
+     // Case Study 1 Person
+     add_settings_field(
+        'custom_tabs_field_case_person_one', // Field ID 
+        __('Case study 1 person', 'custom-tabs-plugin'), // Case Study 1 title
+        'custom_tabs_field_case_person_one_render', // Callback to render the field
+        'custom_tabs_plugin', // Page Slug
+        'custom_tabs_plugin_section', // Section ID 
+    );
+
+    // Case Study 2 Title
     add_settings_field(
         'custom_tabs_field_case_title_two', // Field ID 
         __('Case study 2 title', 'custom-tabs-plugin'), // Case Study 1 title
@@ -51,6 +71,7 @@ function custom_tabs_settings_init()
     );
 }
 
+// Case 1 title 
 function custom_tabs_field_case_title_one_render()
 {
     $options = get_option('custom_tabs_options');
@@ -60,6 +81,15 @@ function custom_tabs_field_case_title_one_render()
     <?php
 }
 
+// Case 1 description
+function custom_tabs_field_case_description_one_render(){
+    $options = get_option('custom_tabs_options');
+    ?>
+    <textarea name="custom_tabs_options[custom_tabs_field_case_description_one]"><?php echo isset($options['custom_tabs_field_case_description_one']) ? esc_textarea($options['custom_tabs_field_case_description_one']) : ''; ?></textarea>
+    <?php
+}
+
+// Case 2 title
 function custom_tabs_field_case_title_two_render()
 {
     $options = get_option('custom_tabs_options');
@@ -94,12 +124,39 @@ function custom_tabs_options_page()
 function custom_tabs_value_shortcode() {
     $options = get_option('custom_tabs_options');
     $caseOneTitle = isset($options['custom_tabs_field_case_title_one']) ? $options['custom_tabs_field_case_title_one'] : '';
+    $caseOneDescription = isset($options['custom_tabs_field_case_description_one']) ? $options['custom_tabs_field_case_description_one'] : '';
     $caseTwoTitle = isset($options['custom_tabs_field_case_title_two']) ? $options['custom_tabs_field_case_title_two'] : '';
 
     $html .= 
-    "<div class='case-study-titles-container'>
+    "
+    <section class='case-studies-container'> 
+
+    <div class='titles-container'>
     <h3> $caseOneTitle $caseTwoTitle </h3>
-    </div>";
+    </div>
+
+    <div class='desc-container'>
+
+    <img  class='apostrophes' />
+    <b class='desc-bold'> </b>
+    <p class='desc-text'> $caseOneDescription </p>
+
+    <div class='review-person-container'>
+        <div>
+        <img src='person'/>
+        </div>
+        
+        <div>
+        <p class='review-name'> </p>
+        <p class='review-job'> </p>
+        </div>
+    </div>
+
+    <img class='company-logo'/>
+    </div>
+
+    </section>
+    ";
 
     return $html;
 }
