@@ -41,6 +41,14 @@ function custom_tabs_settings_init()
         'custom_tabs_plugin', // Page Slug
         'custom_tabs_plugin_section', // Section ID 
     );
+
+    add_settings_field(
+        'custom_tabs_field_case_title_two', // Field ID 
+        __('Case study 2 title', 'custom-tabs-plugin'), // Case Study 1 title
+        'custom_tabs_field_case_title_two_render', // Callback to render the field
+        'custom_tabs_plugin', // Page Slug
+        'custom_tabs_plugin_section', // Section ID 
+    );
 }
 
 function custom_tabs_field_case_title_one_render()
@@ -48,7 +56,16 @@ function custom_tabs_field_case_title_one_render()
     $options = get_option('custom_tabs_options');
     ?>
      <input type="text" name="custom_tabs_options[custom_tabs_field_case_title_one]"
-        value="<?php echo isset($options['custom_tabs_field_case_title_one']) ? esc_attr($options['custom_tabs_field_case_title_one']) : ''; ?>">
+        value="<?php echo isset($options['custom_tabs_field_case_title_one']) ? esc_attr($options['custom_tabs_field_case_title_one']) : ''; ?>">     
+    <?php
+}
+
+function custom_tabs_field_case_title_two_render()
+{
+    $options = get_option('custom_tabs_options');
+    ?>
+    <input type="text" name="custom_tabs_options[custom_tabs_field_case_title_two]"
+        value="<?php echo isset($options['custom_tabs_field_case_title_two']) ? esc_attr($options['custom_tabs_field_case_title_two']) : ''; ?>">
     <?php
 }
 
@@ -77,11 +94,13 @@ function custom_tabs_options_page()
 function custom_tabs_value_shortcode() {
     $options = get_option('custom_tabs_options');
     $caseOneTitle = isset($options['custom_tabs_field_case_title_one']) ? $options['custom_tabs_field_case_title_one'] : '';
+    $caseTwoTitle = isset($options['custom_tabs_field_case_title_two']) ? $options['custom_tabs_field_case_title_two'] : '';
 
     $html .= 
     "<div class='case-study-titles-container'>
-    <p> $caseOneTitle </p>
+    <h3> $caseOneTitle $caseTwoTitle </h3>
     </div>";
+
     return $html;
 }
 
