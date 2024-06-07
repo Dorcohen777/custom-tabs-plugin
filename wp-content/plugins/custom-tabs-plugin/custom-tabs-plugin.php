@@ -34,79 +34,49 @@ function custom_tabs_settings_init()
         'custom_tabs_plugin' // Page slug
     );
 
+    $fields = [
+        'field_title_one' => 'Case Study title 1',
+    ];
+
+    foreach ($fields as $field_id => $field_title) {
+        add_settings_field(
+            $field_id,
+            __($field_title, 'custom-tabs-plugin'),
+            "render_{$field_id}",
+            'custom_tabs_plugin',
+            'custom_tabs_plugin_section'
+        );
+    };
+
     // Case Study 1 Title
-    add_settings_field(
-        'custom_tabs_field_case_title_one', // Field ID 
-        __('Case study 1 title', 'custom-tabs-plugin'), // Case Study 1 title
-        'custom_tabs_field_case_title_one_render', // Callback to render the field
-        'custom_tabs_plugin', // Page Slug
-        'custom_tabs_plugin_section', // Section ID 
-    );
+    // add_settings_field(
+    //     'custom_tabs_field_case_title_one', // Field ID 
+    //     __('Case study 1 title', 'custom-tabs-plugin'), // Case Study 1 title
+    //     'custom_tabs_field_case_title_one_render', // Callback to render the field
+    //     'custom_tabs_plugin', // Page Slug
+    //     'custom_tabs_plugin_section', // Section ID 
+    // );
 
-    // Case Study 1 Description
-    add_settings_field(
-        'custom_tabs_field_case_description_one', // Field ID 
-        __('Case study 1 description', 'custom-tabs-plugin'), // Case Study 1 title
-        'custom_tabs_field_case_description_one_render', // Callback to render the field
-        'custom_tabs_plugin', // Page Slug
-        'custom_tabs_plugin_section', // Section ID 
-    );
 
-     // Case Study 1 Person
-     add_settings_field(
-        'custom_tabs_field_case_person_one', // Field ID 
-        __('Case study 1 person image url', 'custom-tabs-plugin'), // Case Study 1 title
-        'custom_tabs_field_case_person_one_render', // Callback to render the field
-        'custom_tabs_plugin', // Page Slug
-        'custom_tabs_plugin_section', // Section ID 
-    );
-
-    // Case Study 2 Title
-    add_settings_field(
-        'custom_tabs_field_case_title_two', // Field ID 
-        __('Case study 2 title', 'custom-tabs-plugin'), // Case Study 1 title
-        'custom_tabs_field_case_title_two_render', // Callback to render the field
-        'custom_tabs_plugin', // Page Slug
-        'custom_tabs_plugin_section', // Section ID 
-    );
 }
 
-// Case 1 title 
-function custom_tabs_field_case_title_one_render()
+function custom_render_fields($field_id, $type = 'text')
 {
-    $options = get_option('custom_tabs_options');
-    ?>
-     <input type="text" name="custom_tabs_options[custom_tabs_field_case_title_one]"
-        value="<?php echo isset($options['custom_tabs_field_case_title_one']) ? esc_attr($options['custom_tabs_field_case_title_one']) : ''; ?>">     
-    <?php
+    $options = get_option('custom_tabs_option');
+    $value = isset($options[$field_id]) ? esc_attr($options[$field_id]) : '';
+
+    if ($type == 'textarea') {
+        echo "<textarea name='custom_tabs_options[$field_id]'>$value</textarea>";
+    } else {
+        echo "<input type='text' name='custom_tabs_options[$field_id]' value='$value'>";
+    }
 }
 
-// Case 1 description
-function custom_tabs_field_case_description_one_render(){
-    $options = get_option('custom_tabs_options');
-    ?>
-    <textarea name="custom_tabs_options[custom_tabs_field_case_description_one]"><?php echo isset($options['custom_tabs_field_case_description_one']) ? esc_textarea($options['custom_tabs_field_case_description_one']) : ''; ?></textarea>
-    <?php
+function render_field_title_one() {
+    custom_render_fields('field_title_one');
 }
 
-// Case 1 person img
-function custom_tabs_field_case_person_one_render() {
-    $options = get_option('custom_tabs_options');
-    ?>
-    <input type='text' name="custom_tabs_options[custom_tabs_field_case_person_one]"
-        value="<?php echo isset($options['custom_tabs_field_case_person_one']) ? esc_attr($options['custom_tabs_field_case_person_one']) : ''; ?>">  
-    <?php
-}
 
-// Case 2 title
-function custom_tabs_field_case_title_two_render()
-{
-    $options = get_option('custom_tabs_options');
-    ?>
-    <input type="text" name="custom_tabs_options[custom_tabs_field_case_title_two]"
-        value="<?php echo isset($options['custom_tabs_field_case_title_two']) ? esc_attr($options['custom_tabs_field_case_title_two']) : ''; ?>">
-    <?php
-}
 
 // Callback function to display the section description
 function custom_tabs_settings_section_callback()
@@ -130,39 +100,36 @@ function custom_tabs_options_page()
 }
 
 // Shortcode function to display the value of the input field
-function custom_tabs_value_shortcode() {
+function custom_tabs_value_shortcode()
+{
     $options = get_option('custom_tabs_options');
 
-    $caseOneTitle = isset($options['custom_tabs_field_case_title_one']) ? $options['custom_tabs_field_case_title_one'] : '';
-    $caseOneDescription = isset($options['custom_tabs_field_case_description_one']) ? $options['custom_tabs_field_case_description_one'] : '';
-    $caseOnePerson = isset($options['custom_tabs_field_case_person_one']) ? $options['custom_tabs_field_case_person_one'] : '';
-    
-    $caseTwoTitle = isset($options['custom_tabs_field_case_title_two']) ? $options['custom_tabs_field_case_title_two'] : '';
+    $caseOneTitle = isset($options['field_title_one']) ? $options['field_title_one'] : '';
 
-    $html = ""; 
+    $html = "";
 
-    $html .= 
-    "
+    $html .=
+        "
     <section class='case-studies-container'> 
 
     <div class='titles-container'>
-    <h3> $caseOneTitle $caseTwoTitle </h3>
+    <h3> $caseOneTitle  </h3>
     </div>
 
     <div class='desc-container'>
 
     <img  class='apostrophes' />
     <b class='desc-bold'> </b>
-    <p class='desc-text'> $caseOneDescription </p>
+    <p class='desc-text'>  </p>
 
     <div class='review-person-container'>
         <div>
-        <img class='person' src='$caseOnePerson'/>
+        <img class='person' src=''/>
         </div>
         
         <div>
-        <p class='review-name'> </p>
-        <p class='review-job'> </p>
+        <p class='review-name'>  </p>
+        <p class='review-job'>  </p>
         </div>
     </div>
 
@@ -178,4 +145,3 @@ function custom_tabs_value_shortcode() {
 // Register the shortcode
 add_shortcode('custom_tabs_value', 'custom_tabs_value_shortcode');
 ?>
-
