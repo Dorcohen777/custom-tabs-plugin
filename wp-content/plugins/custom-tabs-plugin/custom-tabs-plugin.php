@@ -15,7 +15,9 @@ add_action('wp_enqueue_scripts', 'custom_tabs_enqueue_styles');
 
 function custom_tabs_enqueue_styles()
 {
-    wp_enqueue_style('custom-tabs-styles', get_template_directory_uri('./css/custom-tabs-styles.css') . '', array(), '');
+    $file_url = plugins_url('./css/custom-tabs-style.css', __FILE__);
+    wp_register_style('custom-tabs-styles', $file_url );
+    wp_enqueue_style('custom-tabs-styles');
 }
 
 // Function to add the options page
