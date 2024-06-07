@@ -11,14 +11,22 @@ add_action('admin_menu', 'custom_tabs_add_admin_menu');
 add_action('admin_init', 'custom_tabs_settings_init');
 
 // Hook into WordPress enqueue scripts function
+// add_action('wp_enqueue_scripts', 'custom_tabs_enqueue_styles');
+
+// function custom_tabs_enqueue_styles()
+// {
+//     $file_url = plugins_url('./css/custom-tabs-style.css', __FILE__);
+//     wp_register_style('custom-tabs-styles', $file_url );
+//     wp_enqueue_style('custom-tabs-styles');
+// }
+
 add_action('wp_enqueue_scripts', 'custom_tabs_enqueue_styles');
 
 function custom_tabs_enqueue_styles()
 {
-    $file_url = plugins_url('./css/custom-tabs-style.css', __FILE__);
-    wp_register_style('custom-tabs-styles', $file_url );
-    wp_enqueue_style('custom-tabs-styles');
+    wp_enqueue_style('custom-tabs-styles', plugins_url('./css/custom-tabs-style.css', __FILE__));
 }
+
 
 // Function to add the options page
 function custom_tabs_add_admin_menu()
