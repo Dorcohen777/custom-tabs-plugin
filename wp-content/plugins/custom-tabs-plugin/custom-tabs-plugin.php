@@ -55,7 +55,7 @@ function custom_tabs_settings_init()
      // Case Study 1 Person
      add_settings_field(
         'custom_tabs_field_case_person_one', // Field ID 
-        __('Case study 1 person', 'custom-tabs-plugin'), // Case Study 1 title
+        __('Case study 1 person image url', 'custom-tabs-plugin'), // Case Study 1 title
         'custom_tabs_field_case_person_one_render', // Callback to render the field
         'custom_tabs_plugin', // Page Slug
         'custom_tabs_plugin_section', // Section ID 
@@ -86,6 +86,15 @@ function custom_tabs_field_case_description_one_render(){
     $options = get_option('custom_tabs_options');
     ?>
     <textarea name="custom_tabs_options[custom_tabs_field_case_description_one]"><?php echo isset($options['custom_tabs_field_case_description_one']) ? esc_textarea($options['custom_tabs_field_case_description_one']) : ''; ?></textarea>
+    <?php
+}
+
+// Case 1 person img
+function custom_tabs_field_case_person_one_render() {
+    $options = get_option('custom_tabs_options');
+    ?>
+    <input type='text' name="custom_tabs_options[custom_tabs_field_case_person_one]"
+        value="<?php echo isset($options['custom_tabs_field_case_person_one']) ? esc_attr($options['custom_tabs_field_case_person_one']) : ''; ?>">  
     <?php
 }
 
@@ -123,9 +132,14 @@ function custom_tabs_options_page()
 // Shortcode function to display the value of the input field
 function custom_tabs_value_shortcode() {
     $options = get_option('custom_tabs_options');
+
     $caseOneTitle = isset($options['custom_tabs_field_case_title_one']) ? $options['custom_tabs_field_case_title_one'] : '';
     $caseOneDescription = isset($options['custom_tabs_field_case_description_one']) ? $options['custom_tabs_field_case_description_one'] : '';
+    $caseOnePerson = isset($options['custom_tabs_field_case_person_one']) ? $options['custom_tabs_field_case_person_one'] : '';
+    
     $caseTwoTitle = isset($options['custom_tabs_field_case_title_two']) ? $options['custom_tabs_field_case_title_two'] : '';
+
+    $html = ""; 
 
     $html .= 
     "
@@ -143,7 +157,7 @@ function custom_tabs_value_shortcode() {
 
     <div class='review-person-container'>
         <div>
-        <img src='person'/>
+        <img class='person' src='$caseOnePerson'/>
         </div>
         
         <div>
