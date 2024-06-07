@@ -202,35 +202,97 @@
 @media (max-width: 794px) {
     .titles-container {
 
-
         h3 {
             font-size: 1.25rem;
         }
     }
-    .case-studies-container { 
+
+    .case-studies-container {
 
         .left-side-container {
             padding: 1.375rem;
 
             .desc-container {
 
-                b,p {
+                b,
+                p {
                     font-size: 1.25rem;
                 }
 
                 .review-person-container {
-                    
+
                     .person {
                         max-width: 73px;
                         max-height: 73px;
                     }
+
                     .review-text-container {
 
-                        .review-name, .review-job {
+                        .review-name,
+                        .review-job {
                             font-size: 1rem;
                         }
                     }
                 }
+            }
+        }
+    }
+}
+
+@media (max-width: 776px) {
+
+    .case-studies-container {
+        gap: 1rem;
+        .left-side-container {
+            background-position: bottom right;
+            background-size: cover;
+            background-position: -26px 150px;
+        }
+
+        .right-side-container {
+            .right-side-title-container {
+
+                h2,
+                p {
+                    font-size: 1.25rem;
+                }
+            }
+
+            .cta-container {
+
+                p,
+                a {
+                    font-size: 1.25rem;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 600px) {
+
+    .case-studies-container {
+
+        .left-side-container {
+            background-position: bottom right;
+            background-size: cover;
+            background-position: -180px 120px;
+
+            .desc-container {
+
+                .company-logo {
+                    padding-bottom: 5rem;
+                }
+            }
+        }
+
+        .right-side-container {
+
+            .right-side-title-container,
+            .cta-container {
+
+                padding: 1.375rem;
+
             }
         }
     }

@@ -161,14 +161,48 @@
   .case-studies-container .left-side-container {
     padding: 1.375rem;
   }
-  .case-studies-container .left-side-container .desc-container b, .case-studies-container .left-side-container .desc-container p {
+  .case-studies-container .left-side-container .desc-container b,
+  .case-studies-container .left-side-container .desc-container p {
     font-size: 1.25rem;
   }
   .case-studies-container .left-side-container .desc-container .review-person-container .person {
     max-width: 73px;
     max-height: 73px;
   }
-  .case-studies-container .left-side-container .desc-container .review-person-container .review-text-container .review-name, .case-studies-container .left-side-container .desc-container .review-person-container .review-text-container .review-job {
+  .case-studies-container .left-side-container .desc-container .review-person-container .review-text-container .review-name,
+  .case-studies-container .left-side-container .desc-container .review-person-container .review-text-container .review-job {
     font-size: 1rem;
+  }
+}
+@media (max-width: 776px) {
+  .case-studies-container {
+    gap: 1rem;
+  }
+  .case-studies-container .left-side-container {
+    background-position: bottom right;
+    background-size: cover;
+    background-position: -26px 150px;
+  }
+  .case-studies-container .right-side-container .right-side-title-container h2,
+  .case-studies-container .right-side-container .right-side-title-container p {
+    font-size: 1.25rem;
+  }
+  .case-studies-container .right-side-container .cta-container p,
+  .case-studies-container .right-side-container .cta-container a {
+    font-size: 1.25rem;
+  }
+}
+@media (max-width: 600px) {
+  .case-studies-container .left-side-container {
+    background-position: bottom right;
+    background-size: cover;
+    background-position: -180px 120px;
+  }
+  .case-studies-container .left-side-container .desc-container .company-logo {
+    padding-bottom: 5rem;
+  }
+  .case-studies-container .right-side-container .right-side-title-container,
+  .case-studies-container .right-side-container .cta-container {
+    padding: 1.375rem;
   }
 }
