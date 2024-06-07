@@ -34,10 +34,22 @@ function custom_tabs_settings_init()
         'custom_tabs_plugin' // Page slug
     );
 
+    // Array of field IDs
     $fields = [
-        'field_title_one' => 'Case Study title 1',
+        'field_title_one' => 'Title - item 1',
+        'field_description_one' => 'Description - item 1',
+        'field_bold_description_one' => 'Bold Description - item 1',
+        'field_person_img_one' => 'Preson URL - item 1',
+        'field_person_name_one' => 'Person Name - item 1',
+        'field_person_job_one' => 'Person Job - item 1',
+        'field_brand_logo_one' => 'CaseStudy Logo - item 1',
+        'field_section_bg_one' => 'Section Background URL - item 1',
+        'field_title_right' => 'Section title right side - item 1',
+        'field_subtitle_right' => 'Section subtitle right side - item 1',
+        'field_cta_text' => 'CTA Text - item 1',
     ];
 
+    // Creating field
     foreach ($fields as $field_id => $field_title) {
         add_settings_field(
             $field_id,
@@ -46,20 +58,74 @@ function custom_tabs_settings_init()
             'custom_tabs_plugin',
             'custom_tabs_plugin_section'
         );
-    };
-
-    // Case Study 1 Title
-    // add_settings_field(
-    //     'custom_tabs_field_case_title_one', // Field ID 
-    //     __('Case study 1 title', 'custom-tabs-plugin'), // Case Study 1 title
-    //     'custom_tabs_field_case_title_one_render', // Callback to render the field
-    //     'custom_tabs_plugin', // Page Slug
-    //     'custom_tabs_plugin_section', // Section ID 
-    // );
-
+    }
+    ;
 
 }
 
+// Item 1 title
+function render_field_title_one()
+{
+    custom_render_fields('field_title_one');
+}
+
+// Item 1 bold description 
+function render_field_bold_description_one()
+{
+    custom_render_fields('field_bold_description_one', 'textarea');
+}
+
+// Item 1 description 
+function render_field_description_one()
+{
+    custom_render_fields('field_description_one', 'textarea');
+}
+
+// Item 1 person image
+function render_field_person_img_one()
+{
+    custom_render_fields('field_person_image_one');
+}
+// Item 1 person name
+function render_field_person_name_one()
+{
+    custom_render_fields('field_person_name_one');
+}
+
+// Item 1 person job
+function render_field_person_job_one()
+{
+    custom_render_fields('field_person_job_one');
+}
+
+// Item 1 logo image
+function render_field_brand_logo_one()
+{
+    custom_render_fields('field_brand_logo_one');
+}
+// Item 1 section background image
+function render_field_section_bg_one()
+{
+    custom_render_fields('field_section_bg_one');
+}
+
+// Item 1 right side title
+function render_field_title_right()
+{
+    custom_render_fields('field_title_right');
+}
+
+// Item 1 right side subtitle
+function render_field_subtitle_right()
+{
+    custom_render_fields('field_subtitle_right');
+}
+function render_field_cta_text()
+{
+    custom_render_fields('field_cta_text');
+}
+
+// Function that render and generate custom fields
 function custom_render_fields($field_id, $type = 'text')
 {
     $options = get_option('custom_tabs_option');
@@ -71,11 +137,6 @@ function custom_render_fields($field_id, $type = 'text')
         echo "<input type='text' name='custom_tabs_options[$field_id]' value='$value'>";
     }
 }
-
-function render_field_title_one() {
-    custom_render_fields('field_title_one');
-}
-
 
 
 // Callback function to display the section description
@@ -104,38 +165,58 @@ function custom_tabs_value_shortcode()
 {
     $options = get_option('custom_tabs_options');
 
-    $caseOneTitle = isset($options['field_title_one']) ? $options['field_title_one'] : '';
+     // Item 1
+     $fieldTitleOne = isset($options['field_title_one']) ? $options['field_title_one'] : '';
+     $fieldBoldDescriptionOne = isset($options['field_bold_description_one']) ? $options['field_bold_description_one'] : '';
+     $fieldDescriptionOne = isset($options['field_description_one']) ? $options['field_description_one'] : '';
+     $fieldPersonImgOne = isset($options['field_person_img_one']) ? $options['field_person_img_one'] : '';
+     $fieldPersonNameOne = isset($options['field_person_name_one']) ? $options['field_person_name_one'] : '';
+     $fieldPersonJobOne = isset($options['field_person_job_one']) ? $options['field_person_job_one'] : '';
+     $fieldBrandLogoOne = isset($options['field_brand_logo_one']) ? $options['field_brand_logo_one'] : '';
+     $fieldSectionBgOne = isset($options['field_section_bg_one']) ? $options['field_section_bg_one'] : '';
+     $fieldTitleRight = isset($options['field_title_right']) ? $options['field_title_right'] : '';
+     $fieldSubtitleRight = isset($options['field_subtitle_right']) ? $options['field_subtitle_right'] : '';
+     $fieldCtaText = isset($options['field_cta_text']) ? $options['field_cta_text'] : '';
+ 
 
     $html = "";
 
     $html .=
         "
-    <section class='case-studies-container'> 
 
     <div class='titles-container'>
-    <h3> $caseOneTitle  </h3>
+    <h3> $fieldTitleOne </h3>
     </div>
+
+    <section class='case-studies-container'> 
+
+    <acticle class='left-side-container'> 
 
     <div class='desc-container'>
 
     <img  class='apostrophes' />
-    <b class='desc-bold'> </b>
-    <p class='desc-text'>  </p>
+    <b class='desc-bold'> $fieldBoldDescriptionOne </b>
+    <p class='desc-text'> $fieldDescriptionOne </p>
 
     <div class='review-person-container'>
         <div>
-        <img class='person' src=''/>
+        <img class='person' src='$fieldPersonImgOne'/>
         </div>
         
         <div>
-        <p class='review-name'>  </p>
-        <p class='review-job'>  </p>
+        <p class='review-name'> $fieldPersonNameOne </p>
+        <p class='review-job'> $fieldPersonJobOne </p>
         </div>
     </div>
 
-    <img class='company-logo'/>
-    </div>
+    <img class='company-logo' src='$fieldBrandLogoOne'/>
 
+    </article>
+
+    <article>
+
+    </article class='right-side-container'>
+    
     </section>
     ";
 
