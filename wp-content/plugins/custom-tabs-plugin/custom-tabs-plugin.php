@@ -23,8 +23,10 @@ function custom_tabs_add_admin_menu()
 }
 
 // Function to register settings
-function custom_tabs_settings_init() {
-    register_setting('custom_tabs_plugin', 'custom_tabs_options'); 
+function custom_tabs_settings_init()
+{
+    register_setting('custom_tabs_plugin', 'custom_tabs_options');
+
     add_settings_section(
         'custom_tabs_plugin_section', // Section ID
         __('Custom Tabs Settings', 'custom-tabs-plugin'), // Title
@@ -33,39 +35,57 @@ function custom_tabs_settings_init() {
     );
 
     add_settings_field(
-        'custom_tabs_field_brands_name', // Field ID 
-        __('Case Study Titles', 'custom-tabs-plugin'), // Case Study Titles
-        'custom_tabs_field_brands_name_render', // Callback to render the field
+        'custom_tabs_field_case_title_one', // Field ID 
+        __('Case study 1 title', 'custom-tabs-plugin'), // Case Study 1 title
+        'custom_tabs_field_case_title_one_render', // Callback to render the field
         'custom_tabs_plugin', // Page Slug
         'custom_tabs_plugin_section', // Section ID 
     );
 }
 
-function custom_tabs_field_brands_name_render() {
+function custom_tabs_field_case_title_one_render()
+{
     $options = get_option('custom_tabs_options');
-    $titles = isset($options['custom_tabs_field_brands_name']) ? $options['custom_tabs_field_brands_name'] : '';
-
     ?>
-    <textarea name="custom_tabs_options[custom_tabs_field_brands_name]" rows="5" cols="50"><?php echo esc_textarea($titles); ?></textarea>
-    <p class="description"><?php _e('Enter each title on a new line.', 'custom-tabs-plugin'); ?></p>
+     <input type="text" name="custom_tabs_options[custom_tabs_field_case_title_one]"
+        value="<?php echo isset($options['custom_tabs_field_case_title_one']) ? esc_attr($options['custom_tabs_field_case_title_one']) : ''; ?>">
     <?php
 }
 
-// Function to sanitize the input
-function custom_tabs_sanitize_titles($input) {
-    $sanitized_input = array();
-
-    if (isset($input['custom_tabs_field_brands_name'])) {
-        $lines = explode("\n", $input['custom_tabs_field_brands_name']);
-        $sanitized_input['custom_tabs_field_brands_name'] = array_map('sanitize_text_field', $lines);
-    }
-
-    return $sanitized_input;
+// Callback function to display the section description
+function custom_tabs_settings_section_callback()
+{
+    echo __('Enter your settings below:', 'custom-tabs-plugin');
 }
 
-// Register sanitization function with the setting
-add_filter('sanitize_option_custom_tabs_options', 'custom_tabs_sanitize_titles');
+// Callback function to display the options page
+function custom_tabs_options_page()
+{
+    ?>
+    <form action='options.php' method='post'>
+        <h1><?php _e('Custom Tabs Plugin Settings', 'custom-tabs-plugin'); ?></h1>
+        <?php
+        settings_fields('custom_tabs_plugin');
+        do_settings_sections('custom_tabs_plugin');
+        submit_button();
+        ?>
+    </form>
+    <?php
+}
 
-// register activation hook
-register_activation_hook(__FILE__, 'activate_tabs_plugin');
+// Shortcode function to display the value of the input field
+function custom_tabs_value_shortcode() {
+    $options = get_option('custom_tabs_options');
+    $caseOneTitle = isset($options['custom_tabs_field_case_title_one']) ? $options['custom_tabs_field_case_title_one'] : '';
+
+    $html .= 
+    "<div class='case-study-titles-container'>
+    <p> $caseOneTitle </p>
+    </div>";
+    return $html;
+}
+
+// Register the shortcode
+add_shortcode('custom_tabs_value', 'custom_tabs_value_shortcode');
 ?>
+
