@@ -196,7 +196,7 @@
   .case-studies-container .left-side-container {
     background-position: bottom right;
     background-size: cover;
-    background-position: -180px 120px;
+    background-position: -241px 164px;
   }
   .case-studies-container .left-side-container .desc-container .company-logo {
     padding-bottom: 5rem;
@@ -204,5 +204,14 @@
   .case-studies-container .right-side-container .right-side-title-container,
   .case-studies-container .right-side-container .cta-container {
     padding: 1.375rem;
+  }
+  .case-studies-container .right-side-container .cta-container {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+}
+@media (max-width: 484px) {
+  .case-studies-container .left-side-container {
+    background-position: -411px 223px;
   }
 }
