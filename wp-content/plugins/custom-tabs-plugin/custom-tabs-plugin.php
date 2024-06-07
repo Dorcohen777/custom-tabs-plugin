@@ -24,8 +24,7 @@ function custom_tabs_add_admin_menu()
 
 // Function to register settings
 function custom_tabs_settings_init() {
-    register_setting('custom_tabs_plugin', 'custom_tabs_options');
-
+    register_setting('custom_tabs_plugin', 'custom_tabs_options'); 
     add_settings_section(
         'custom_tabs_plugin_section', // Section ID
         __('Custom Tabs Settings', 'custom-tabs-plugin'), // Title
@@ -50,12 +49,23 @@ function custom_tabs_field_brands_name_render() {
     <textarea name="custom_tabs_options[custom_tabs_field_brands_name]" rows="5" cols="50"><?php echo esc_textarea($titles); ?></textarea>
     <p class="description"><?php _e('Enter each title on a new line.', 'custom-tabs-plugin'); ?></p>
     <?php
-
-    
 }
 
+// Function to sanitize the input
+function custom_tabs_sanitize_titles($input) {
+    $sanitized_input = array();
+
+    if (isset($input['custom_tabs_field_brands_name'])) {
+        $lines = explode("\n", $input['custom_tabs_field_brands_name']);
+        $sanitized_input['custom_tabs_field_brands_name'] = array_map('sanitize_text_field', $lines);
+    }
+
+    return $sanitized_input;
+}
+
+// Register sanitization function with the setting
+add_filter('sanitize_option_custom_tabs_options', 'custom_tabs_sanitize_titles');
+
 // register activation hook
-register_activation_hook(__FILE__, 'activate_tabs_plugin')
-
-
-    ?>
+register_activation_hook(__FILE__, 'activate_tabs_plugin');
+?>
