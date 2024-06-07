@@ -24,7 +24,7 @@ add_action('wp_enqueue_scripts', 'custom_tabs_enqueue_styles');
 
 function custom_tabs_enqueue_styles()
 {
-    wp_enqueue_style('custom-tabs-styles', plugins_url('./css/custom-tabs-style.css', __FILE__));
+    wp_enqueue_style('custom-tabs-styles', plugins_url('./scss/custom-tabs-style.scss', __FILE__));
 }
 
 
