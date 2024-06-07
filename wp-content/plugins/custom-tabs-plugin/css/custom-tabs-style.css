@@ -1,8 +1,16 @@
 @import url("https://use.typekit.net/wuz0gtr.css");
+.titles-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
 .titles-container h3 {
   color: #4C3EFF;
   font-size: 2rem;
   font-weight: 700;
+  font-family: "proxima-nova", sans-serif;
+  border-bottom: solid #4C3EFF 3px;
+  width: fit-content;
 }
 
 .case-studies-container {
@@ -17,7 +25,7 @@
   width: 65%;
   max-width: 850px;
   flex-grow: 1;
-  padding: 3.5rem;
+  padding: 4.5rem 3rem;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: bottom right;
@@ -38,13 +46,16 @@
 .case-studies-container .left-side-container .desc-container b {
   font-size: 1.563rem;
 }
-.case-studies-container .left-side-container .desc-container .company-logo {
-  max-width: 60.26px;
+.case-studies-container .left-side-container .desc-container .desc-text {
+  margin: 0;
 }
 .case-studies-container .left-side-container .desc-container .review-person-container .review-text-container .review-name,
 .case-studies-container .left-side-container .desc-container .review-person-container .review-text-container .review-job {
   font-size: 1.125rem;
   margin: 0;
+}
+.case-studies-container .left-side-container .desc-container .company-logo {
+  max-width: 60.26px;
 }
 .case-studies-container .right-side-container {
   width: 35%;
@@ -106,4 +117,58 @@
   max-width: 80px;
   max-height: 80px;
   border-radius: 50%;
+}
+
+@media (max-width: 1404px) {
+  .case-studies-container .left-side-container {
+    width: 50%;
+  }
+  .case-studies-container .right-side-container {
+    width: 25%;
+  }
+}
+@media (max-width: 1285px) {
+  .case-studies-container .left-side-container {
+    width: 60%;
+    background-position: 71% 20%;
+  }
+  .case-studies-container .right-side-container {
+    width: 20%;
+  }
+}
+@media (max-width: 1145px) {
+  .case-studies-container {
+    flex-direction: column;
+  }
+  .case-studies-container .left-side-container {
+    width: auto;
+    background-position: center;
+    padding: 2rem;
+  }
+  .case-studies-container .right-side-container {
+    width: 100%;
+    flex-direction: row;
+    gap: 1rem;
+  }
+  .case-studies-container .right-side-container > * {
+    flex-grow: 1;
+  }
+}
+@media (max-width: 794px) {
+  .titles-container h3 {
+    font-size: 1.25rem;
+  }
+  .case-studies-container .left-side-container {
+    padding: 1.375rem;
+  }
+  .case-studies-container .left-side-container .desc-container b, .case-studies-container .left-side-container .desc-container p {
+    font-size: 1.25rem;
+  }
+  .case-studies-container .left-side-container .desc-container .review-person-container .person {
+    max-width: 73px;
+    max-height: 73px;
+  }
+  .case-studies-container .left-side-container .desc-container .review-person-container .review-text-container .review-name, .case-studies-container .left-side-container .desc-container .review-person-container .review-text-container .review-job {
+    font-size: 1rem;
+  }
 }

@@ -1,14 +1,17 @@
 @import url('https://use.typekit.net/wuz0gtr.css');
 
-
-
-
 .titles-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
 
     h3 {
         color: #4C3EFF;
         font-size: 2rem;
         font-weight: 700;
+        font-family: "proxima-nova", sans-serif;
+        border-bottom: solid #4C3EFF 3px;
+        width: fit-content;
     }
 }
 
@@ -17,7 +20,7 @@
     display: flex;
     gap: 3rem;
 
-    > * {
+    >* {
         font-family: "proxima-nova", sans-serif;
     }
 
@@ -25,7 +28,7 @@
         width: 65%;
         max-width: 850px;
         flex-grow: 1;
-        padding: 3.5rem;
+        padding: 4.5rem 3rem;
         background-repeat: no-repeat;
         background-size: cover;
         background-position: bottom right;
@@ -48,8 +51,8 @@
                 font-size: 1.563rem;
             }
 
-            .company-logo {
-                max-width: 60.26px;
+            .desc-text {
+                margin: 0;
             }
 
             .review-person-container {
@@ -63,6 +66,10 @@
                         margin: 0;
                     }
                 }
+            }
+
+            .company-logo {
+                max-width: 60.26px;
             }
 
         }
@@ -140,5 +147,91 @@
         max-width: 80px;
         max-height: 80px;
         border-radius: 50%;
+    }
+}
+
+
+@media (max-width:1404px) {
+    .case-studies-container {
+        .left-side-container {
+            width: 50%;
+        }
+
+        .right-side-container {
+            width: 25%;
+        }
+    }
+}
+
+@media (max-width:1285px) {
+    .case-studies-container {
+        .left-side-container {
+            width: 60%;
+            background-position: 71% 20%;
+        }
+
+        .right-side-container {
+            width: 20%;
+        }
+    }
+}
+
+@media (max-width:1145px) {
+    .case-studies-container {
+        flex-direction: column;
+
+        .left-side-container {
+            width: auto;
+            background-position: center;
+            padding: 2rem;
+        }
+
+        .right-side-container {
+            width: 100%;
+            flex-direction: row;
+            gap: 1rem;
+
+            >* {
+                flex-grow: 1;
+            }
+
+        }
+    }
+}
+
+@media (max-width: 794px) {
+    .titles-container {
+
+
+        h3 {
+            font-size: 1.25rem;
+        }
+    }
+    .case-studies-container { 
+
+        .left-side-container {
+            padding: 1.375rem;
+
+            .desc-container {
+
+                b,p {
+                    font-size: 1.25rem;
+                }
+
+                .review-person-container {
+                    
+                    .person {
+                        max-width: 73px;
+                        max-height: 73px;
+                    }
+                    .review-text-container {
+
+                        .review-name, .review-job {
+                            font-size: 1rem;
+                        }
+                    }
+                }
+            }
+        }
     }
 }
