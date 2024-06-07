@@ -10,6 +10,14 @@ add_action('admin_menu', 'custom_tabs_add_admin_menu');
 // Hook to register settings
 add_action('admin_init', 'custom_tabs_settings_init');
 
+// Hook into WordPress enqueue scripts function
+add_action('wp_enqueue_scripts', 'custom_tabs_enqueue_styles');
+
+function custom_tabs_enqueue_styles()
+{
+    wp_enqueue_style('custom-tabs-styles', get_template_directory_uri('./css/custom-tabs-styles.css') . '', array(), '');
+}
+
 // Function to add the options page
 function custom_tabs_add_admin_menu()
 {
@@ -58,7 +66,8 @@ function custom_tabs_settings_init()
             'custom_tabs_plugin',
             'custom_tabs_plugin_section'
         );
-    };
+    }
+    ;
 
 }
 
