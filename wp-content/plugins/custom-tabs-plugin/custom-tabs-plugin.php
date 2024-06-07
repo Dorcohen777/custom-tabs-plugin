@@ -202,49 +202,39 @@ function custom_tabs_value_shortcode()
     $html .=
         "
 
-    <div class='titles-container'>
-    <h3> $fieldTitleOne </h3>
-    </div>
-
+        <div class='titles-container'>
+            <h3> $fieldTitleOne </h3>
+        </div>
+    
     <section class='case-studies-container'> 
+    
+        <article class='left-side-container' style='background-image: url($fieldSectionBgOne)'>
 
-    <acticle class='left-side-container'> 
-
-    <div class='desc-container'>
-
-    <img  class='apostrophes' />
-    <b class='desc-bold'> $fieldBoldDescriptionOne </b>
-    <p class='desc-text'> $fieldDescriptionOne </p>
-
-    <div class='review-person-container'>
-        <div>
-        
-        <img class='person' src='$fieldPersonImgOne' />
-        </div>
-        
-        <div>
-        <p class='review-name'> $fieldPersonNameOne </p>
-        <p class='review-job'> $fieldPersonJobOne </p>
-        </div>
-    </div>
-
-    <img class='company-logo' src='$fieldBrandLogoOne'/>
-
-    </article>
-
-    <article class='right-side-container'>
-
-    <div class='right-side-title-container'>
-    <h2>$fieldTitleRight</h2>
-    <p>$fieldSubtitleRight</p>
-    </div>
-
-    <div class='cta-container'>
-        <a> $fieldCtaText </a>
-    </div>
-
-    </article>
-
+            <div class='desc-container'>
+                <img class='apostrophes' />
+                <b class='desc-bold bold'> $fieldBoldDescriptionOne </b>
+                <p class='desc-text'> $fieldDescriptionOne </p>
+                <div class='review-person-container'>
+                    <img class='person' src='$fieldPersonImgOne' />
+                    <div class='review-text-container'>
+                        <b class='review-name'> $fieldPersonNameOne </b>
+                        <p class='review-job'> $fieldPersonJobOne </p>
+                    </div>
+                </div>
+                <img class='company-logo' src='$fieldBrandLogoOne'/>
+            </div>
+        </article>
+    
+        <article class='right-side-container'>
+            <div class='right-side-title-container'>
+                <h2>$fieldTitleRight</h2>
+                <p>$fieldSubtitleRight</p>
+            </div>
+            <div class='cta-container'>
+                <a> $fieldCtaText </a>
+            </div>
+        </article>
+    
     </section>
     ";
 

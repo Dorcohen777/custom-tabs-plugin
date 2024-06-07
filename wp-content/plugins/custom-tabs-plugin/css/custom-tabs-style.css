@@ -1,3 +1,45 @@
-body {
-  background-color: white;
+.titles-container h3 {
+  color: #4C3EFF;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.case-studies-container {
+  width: 100%;
+  display: flex;
+  gap: 1rem;
+}
+.case-studies-container .left-side-container {
+  max-width: 70%;
+  padding: 1rem;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: bottom right;
+}
+.case-studies-container .left-side-container .desc-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.case-studies-container .left-side-container .desc-container p, .case-studies-container .left-side-container .desc-container b {
+  font-size: 1.563rem;
+}
+.case-studies-container .left-side-container .desc-container .company-logo {
+  max-width: 60.26px;
+}
+.case-studies-container .left-side-container .desc-container .review-person-container .review-text-container .review-name, .case-studies-container .left-side-container .desc-container .review-person-container .review-text-container .review-job {
+  font-size: 1.125rem;
+  margin: 0;
+}
+.case-studies-container .right-side-contaier {
+  width: 30%;
+}
+
+.review-person-container {
+  display: flex;
+}
+.review-person-container img {
+  max-width: 80px;
+  max-height: 80px;
+  border-radius: 50%;
 }
