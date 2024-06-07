@@ -58,8 +58,7 @@ function custom_tabs_settings_init()
             'custom_tabs_plugin',
             'custom_tabs_plugin_section'
         );
-    }
-    ;
+    };
 
 }
 
@@ -84,7 +83,7 @@ function render_field_description_one()
 // Item 1 person image
 function render_field_person_img_one()
 {
-    custom_render_fields('field_person_image_one');
+    custom_render_fields('field_person_img_one');
 }
 // Item 1 person name
 function render_field_person_name_one()
@@ -128,7 +127,7 @@ function render_field_cta_text()
 // Function that render and generate custom fields
 function custom_render_fields($field_id, $type = 'text')
 {
-    $options = get_option('custom_tabs_option');
+    $options = get_option('custom_tabs_options');
     $value = isset($options[$field_id]) ? esc_attr($options[$field_id]) : '';
 
     if ($type == 'textarea') {
@@ -165,19 +164,19 @@ function custom_tabs_value_shortcode()
 {
     $options = get_option('custom_tabs_options');
 
-     // Item 1
-     $fieldTitleOne = isset($options['field_title_one']) ? $options['field_title_one'] : '';
-     $fieldBoldDescriptionOne = isset($options['field_bold_description_one']) ? $options['field_bold_description_one'] : '';
-     $fieldDescriptionOne = isset($options['field_description_one']) ? $options['field_description_one'] : '';
-     $fieldPersonImgOne = isset($options['field_person_img_one']) ? $options['field_person_img_one'] : '';
-     $fieldPersonNameOne = isset($options['field_person_name_one']) ? $options['field_person_name_one'] : '';
-     $fieldPersonJobOne = isset($options['field_person_job_one']) ? $options['field_person_job_one'] : '';
-     $fieldBrandLogoOne = isset($options['field_brand_logo_one']) ? $options['field_brand_logo_one'] : '';
-     $fieldSectionBgOne = isset($options['field_section_bg_one']) ? $options['field_section_bg_one'] : '';
-     $fieldTitleRight = isset($options['field_title_right']) ? $options['field_title_right'] : '';
-     $fieldSubtitleRight = isset($options['field_subtitle_right']) ? $options['field_subtitle_right'] : '';
-     $fieldCtaText = isset($options['field_cta_text']) ? $options['field_cta_text'] : '';
- 
+    // Item 1
+    $fieldTitleOne = isset($options['field_title_one']) ? $options['field_title_one'] : '';
+    $fieldBoldDescriptionOne = isset($options['field_bold_description_one']) ? $options['field_bold_description_one'] : '';
+    $fieldDescriptionOne = isset($options['field_description_one']) ? $options['field_description_one'] : '';
+    $fieldPersonImgOne = isset($options['field_person_img_one']) ? $options['field_person_img_one'] : '';
+    $fieldPersonNameOne = isset($options['field_person_name_one']) ? $options['field_person_name_one'] : '';
+    $fieldPersonJobOne = isset($options['field_person_job_one']) ? $options['field_person_job_one'] : '';
+    $fieldBrandLogoOne = isset($options['field_brand_logo_one']) ? $options['field_brand_logo_one'] : '';
+    $fieldSectionBgOne = isset($options['field_section_bg_one']) ? $options['field_section_bg_one'] : '';
+    $fieldTitleRight = isset($options['field_title_right']) ? $options['field_title_right'] : '';
+    $fieldSubtitleRight = isset($options['field_subtitle_right']) ? $options['field_subtitle_right'] : '';
+    $fieldCtaText = isset($options['field_cta_text']) ? $options['field_cta_text'] : '';
+
 
     $html = "";
 
@@ -200,7 +199,8 @@ function custom_tabs_value_shortcode()
 
     <div class='review-person-container'>
         <div>
-        <img class='person' src='$fieldPersonImgOne'/>
+        
+        <img class='person' src='$fieldPersonImgOne' />
         </div>
         
         <div>
@@ -213,10 +213,19 @@ function custom_tabs_value_shortcode()
 
     </article>
 
-    <article>
+    <article class='right-side-container'>
 
-    </article class='right-side-container'>
-    
+    <div class='right-side-title-container'>
+    <h2>$fieldTitleRight</h2>
+    <p>$fieldSubtitleRight</p>
+    </div>
+
+    <div class='cta-container'>
+        <a> $fieldCtaText </a>
+    </div>
+
+    </article>
+
     </section>
     ";
 
