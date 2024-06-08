@@ -18,7 +18,6 @@ function custom_tabs_enqueue_styles()
     wp_enqueue_style('custom-tabs-styles', plugins_url('./css/custom-tabs-style.css', __FILE__));
 }
 
-
 // Function to add the options page
 function custom_tabs_add_admin_menu()
 {
@@ -43,19 +42,18 @@ function custom_tabs_settings_init()
         'custom_tabs_plugin' // Page slug
     );
 
-    // Array of fields with their types
     $fields = [
-        'field_title_one' => 'text',
-        'field_bold_description_one' => 'textarea',
-        'field_description_one' => 'textarea',
-        'field_person_img_one' => 'text',
-        'field_person_name_one' => 'text',
-        'field_person_job_one' => 'text',
-        'field_brand_logo_one' => 'text',
-        'field_section_bg_one' => 'text',
-        'field_title_right_one' => 'text',
-        'field_subtitle_right_one' => 'text',
-        'field_cta_text_one' => 'text',
+        'field_title' => 'text',
+        'field_bold_description' => 'textarea',
+        'field_description' => 'textarea',
+        'field_person_img' => 'text',
+        'field_person_name' => 'text',
+        'field_person_job' => 'text',
+        'field_brand_logo' => 'text',
+        'field_section_bg' => 'text',
+        'field_title_right' => 'text',
+        'field_subtitle_right' => 'text',
+        'field_cta_text' => 'text',
         'field_title_two' => 'text',
         'field_bold_description_two' => 'textarea',
         'field_description_two' => 'textarea',
@@ -69,9 +67,9 @@ function custom_tabs_settings_init()
         'field_cta_text_two' => 'text',
     ];
 
-
     // Looping over the array of fields to add settings fields 
     foreach ($fields as $field_id => $field_type) {
+
         add_settings_field(
             $field_id,
             __(str_replace('_', ' ', ucwords($field_id, '_')), 'custom-tabs-plugin'), // Convert field ID to Title
@@ -79,7 +77,7 @@ function custom_tabs_settings_init()
                 custom_render_fields($field_id, $field_type);
             },
             'custom_tabs_plugin',
-            'custom_tabs_plugin_section'
+            'custom_tabs_plugin_section',
         );
     }
 }
@@ -118,10 +116,22 @@ function custom_tabs_options_page()
     <?php
 }
 
-// Rendering item by user prefrence
-function onChooseItem($str){
-
-    var_dump($str);
+// Generate Item object 
+function generateItemObject($options, $prefix)
+{
+    return [
+        'title' => isset($options[$prefix . 'title']) ? $options[$prefix . 'title'] : '',
+        'boldDesc' => isset($options[$prefix . 'bold_description']) ? $options[$prefix . 'bold_description'] : '',
+        'regDesc' => isset($options[$prefix . 'description']) ? $options[$prefix . 'description'] : '',
+        'personImg' => isset($options[$prefix . 'person_img']) ? $options[$prefix . 'person_img'] : '',
+        'personName' => isset($options[$prefix . 'person_name']) ? $options[$prefix . 'person_name'] : '',
+        'personJob' => isset($options[$prefix . 'person_job']) ? $options[$prefix . 'person_job'] : '',
+        'brandLogo' => isset($options[$prefix . 'brand_logo']) ? $options[$prefix . 'brand_logo'] : '',
+        'sectionBg' => isset($options[$prefix . 'section_bg']) ? $options[$prefix . 'section_bg'] : '',
+        'rightTitle' => isset($options[$prefix . 'title_right']) ? $options[$prefix . 'title_right'] : '',
+        'rightSubtitle' => isset($options[$prefix . 'subtitle_right']) ? $options[$prefix . 'subtitle_right'] : '',
+        'ctaText' => isset($options[$prefix . 'cta_text']) ? $options[$prefix . 'cta_text'] : ''
+    ];
 }
 
 // Shortcode function to display the value of the input field
@@ -129,76 +139,51 @@ function custom_tabs_value_shortcode()
 {
     $options = get_option('custom_tabs_options');
 
-    // Item 1
-    $fieldTitleOne = isset($options['field_title_one']) ? $options['field_title_one'] : '';
-    $fieldBoldDescriptionOne = isset($options['field_bold_description_one']) ? $options['field_bold_description_one'] : '';
-    $fieldDescriptionOne = isset($options['field_description_one']) ? $options['field_description_one'] : '';
-    $fieldPersonImgOne = isset($options['field_person_img_one']) ? $options['field_person_img_one'] : '';
-    $fieldPersonNameOne = isset($options['field_person_name_one']) ? $options['field_person_name_one'] : '';
-    $fieldPersonJobOne = isset($options['field_person_job_one']) ? $options['field_person_job_one'] : '';
-    $fieldBrandLogoOne = isset($options['field_brand_logo_one']) ? $options['field_brand_logo_one'] : '';
-    $fieldSectionBgOne = isset($options['field_section_bg_one']) ? $options['field_section_bg_one'] : '';
-    $fieldTitleRightOne = isset($options['field_title_right_one']) ? $options['field_title_right_one'] : '';
-    $fieldSubtitleRightOne = isset($options['field_subtitle_right_one']) ? $options['field_subtitle_right_one'] : '';
-    $fieldCtaTextOne = isset($options['field_cta_text_one']) ? $options['field_cta_text_one'] : '';
+    // Define variables for item one and item two
+    $itemOne = generateItemObject($options, 'field_');
+    $itemTwo = generateItemObject($options, 'field_');
 
-    // Item 2
-    $fieldTitleTwo = isset($options['field_title_two']) ? $options['field_title_two'] : '';
-    $fieldBoldDescriptionTwo = isset($options['field_bold_description_two']) ? $options['field_bold_description_two'] : '';
-    $fieldDescriptionTwo = isset($options['field_description_two']) ? $options['field_description_two'] : '';
-    $fieldPersonImgTwo = isset($options['field_person_img_two']) ? $options['field_person_img_two'] : '';
-    $fieldPersonNameTwo = isset($options['field_person_name_two']) ? $options['field_person_name_two'] : '';
-    $fieldPersonJobTwo = isset($options['field_person_job_two']) ? $options['field_person_job_two'] : '';
-    $fieldBrandLogoTwo = isset($options['field_brand_logo_two']) ? $options['field_brand_logo_two'] : '';
-    $fieldSectionBgTwo = isset($options['field_section_bg_two']) ? $options['field_section_bg_two'] : '';
-    $fieldTitleRightTwo = isset($options['field_title_right_two']) ? $options['field_title_right_two'] : '';
-    $fieldSubtitleRightTwo = isset($options['field_subtitle_right_two']) ? $options['field_subtitle_right_two'] : '';
-    $fieldCtaTextTwo = isset($options['field_cta_text_two']) ? $options['field_cta_text_two'] : '';
+    extract($itemOne); // Extracting $title, $boldDesc, $regDesc, $personImg, $personName, $personJob, $brandLogo, $sectionBg, $rightTitle, $rightSubtitle, $ctaText
 
-    $html = "";
-    $html .=
-        "
-
-        <div class='titles-container'>
-            <h3 onclick=onclick='onChooseItem('retail') class='active' '>Retail</h3>
-            <h3 onclick=onclick='onChooseItem('luxury') class='inactive' '>Luxury fashion </h3>
-            <h3 onclick=onclick='onChooseItem('digital') class='inactive' '>Digital goods </h3>
-            <h3 onclick=onclick='onChooseItem('travel') class='inactive' '>Travel </h3>
-            <h3 onclick=onclick='onChooseItem('athletic') class='inactive' '>Athletic & Outdoors  </h3>
-        </div>
-    
+    // Start building HTML
+    $html = "<script>
+                console.log('live');
+            </script>
+    <div class='titles-container'>
+        <h3 onclick=\"onChooseItem('retail')\" class='active'>Retail</h3>
+        <h3 onclick=\"onChooseItem('luxury')\" class='inactive'>Luxury fashion</h3>
+        <h3 onclick=\"onChooseItem('retail')\" class='inactive'>Digital goods</h3>
+        <h3 onclick=\"onChooseItem('retail')\" class='inactive'>Travel</h3>
+        <h3 onclick=\"onChooseItem('retail')\" class='inactive'>Athletic & Outdoors</h3>
+    </div>
     <section class='case-studies-container'> 
-    
-        <article class='left-side-container' style='background-image: url($fieldSectionBgOne)'>
-
+        <article class='left-side-container' style='background-image: url($sectionBg)'>
             <div class='desc-container'>
                 <a class='apostrophes'> &#x201E; </a>
-                <b class='desc-bold bold'> $fieldBoldDescriptionOne </b>
-                <p class='desc-text'> $fieldDescriptionOne </p>
-                <div class='review-person-container'>
-                    <img class='person' src='$fieldPersonImgOne' />
+                <b class='desc-bold bold'> $boldDesc </b>
+                <p class='desc-text'> $regDesc </p>
+           <div class='review-person-container'>
+               <img class='person' src='$personImg' />
                     <div class='review-text-container'>
-                        <b class='review-name'> $fieldPersonNameOne </b>
-                        <p class='review-job'> $fieldPersonJobOne </p>
-                    </div>
-                </div>
-                <img class='company-logo' src='$fieldBrandLogoOne'/>
+                        <b class='review-name'> $personName </b>
+                        <p class='review-job'> $personJob </p>
+                     </div>
+           </div>
+                <img class='company-logo' src='$brandLogo'/>
             </div>
         </article>
-    
         <article class='right-side-container'>
             <div class='right-side-title-container'>
-                <h2>$fieldTitleRightOne</h2>
-                <p>$fieldSubtitleRightOne</p>
+                <h2>$rightTitle</h2>
+                <p>$rightSubtitle</p>
             </div>
             <div class='cta-container'>
                 <p class='arrow'>&#x2197;</p>
-                <a> $fieldCtaTextOne</a>
+                <a> $ctaText </a>
             </div>
         </article>
-    
-    </section>
-    ";
+    </section>";
+
     return $html;
 }
 
