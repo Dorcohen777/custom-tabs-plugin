@@ -54,17 +54,6 @@ function custom_tabs_settings_init()
         'field_title_right' => 'text',
         'field_subtitle_right' => 'text',
         'field_cta_text' => 'text',
-        'field_title_two' => 'text',
-        'field_bold_description_two' => 'textarea',
-        'field_description_two' => 'textarea',
-        'field_person_img_two' => 'text',
-        'field_person_name_two' => 'text',
-        'field_person_job_two' => 'text',
-        'field_brand_logo_two' => 'text',
-        'field_section_bg_two' => 'text',
-        'field_title_right_two' => 'text',
-        'field_subtitle_right_two' => 'text',
-        'field_cta_text_two' => 'text',
     ];
 
     // Looping over the array of fields to add settings fields 
