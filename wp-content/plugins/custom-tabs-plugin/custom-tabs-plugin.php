@@ -70,12 +70,12 @@ function custom_tabs_settings_init()
     ];
 
 
-     // Looping over the array of fields to add settings fields 
-     foreach ($fields as $field_id => $field_type) {
+    // Looping over the array of fields to add settings fields 
+    foreach ($fields as $field_id => $field_type) {
         add_settings_field(
             $field_id,
             __(str_replace('_', ' ', ucwords($field_id, '_')), 'custom-tabs-plugin'), // Convert field ID to Title
-            function() use ($field_id, $field_type) {
+            function () use ($field_id, $field_type) {
                 custom_render_fields($field_id, $field_type);
             },
             'custom_tabs_plugin',
@@ -85,7 +85,8 @@ function custom_tabs_settings_init()
 }
 
 // Function to render and generate custom fields
-function custom_render_fields($field_id, $type = 'text') {
+function custom_render_fields($field_id, $type = 'text')
+{
     $options = get_option('custom_tabs_options');
     $value = isset($options[$field_id]) ? esc_attr($options[$field_id]) : '';
 
@@ -117,6 +118,12 @@ function custom_tabs_options_page()
     <?php
 }
 
+// Rendering item by user prefrence
+function onChooseItem($str){
+
+    var_dump($str);
+}
+
 // Shortcode function to display the value of the input field
 function custom_tabs_value_shortcode()
 {
@@ -131,17 +138,33 @@ function custom_tabs_value_shortcode()
     $fieldPersonJobOne = isset($options['field_person_job_one']) ? $options['field_person_job_one'] : '';
     $fieldBrandLogoOne = isset($options['field_brand_logo_one']) ? $options['field_brand_logo_one'] : '';
     $fieldSectionBgOne = isset($options['field_section_bg_one']) ? $options['field_section_bg_one'] : '';
-    $fieldTitleRight = isset($options['field_title_right_one']) ? $options['field_title_right_one'] : '';
-    $fieldSubtitleRight = isset($options['field_subtitle_right_one']) ? $options['field_subtitle_right_one'] : '';
-    $fieldCtaText = isset($options['field_cta_text_one']) ? $options['field_cta_text_one'] : '';
+    $fieldTitleRightOne = isset($options['field_title_right_one']) ? $options['field_title_right_one'] : '';
+    $fieldSubtitleRightOne = isset($options['field_subtitle_right_one']) ? $options['field_subtitle_right_one'] : '';
+    $fieldCtaTextOne = isset($options['field_cta_text_one']) ? $options['field_cta_text_one'] : '';
+
+    // Item 2
+    $fieldTitleTwo = isset($options['field_title_two']) ? $options['field_title_two'] : '';
+    $fieldBoldDescriptionTwo = isset($options['field_bold_description_two']) ? $options['field_bold_description_two'] : '';
+    $fieldDescriptionTwo = isset($options['field_description_two']) ? $options['field_description_two'] : '';
+    $fieldPersonImgTwo = isset($options['field_person_img_two']) ? $options['field_person_img_two'] : '';
+    $fieldPersonNameTwo = isset($options['field_person_name_two']) ? $options['field_person_name_two'] : '';
+    $fieldPersonJobTwo = isset($options['field_person_job_two']) ? $options['field_person_job_two'] : '';
+    $fieldBrandLogoTwo = isset($options['field_brand_logo_two']) ? $options['field_brand_logo_two'] : '';
+    $fieldSectionBgTwo = isset($options['field_section_bg_two']) ? $options['field_section_bg_two'] : '';
+    $fieldTitleRightTwo = isset($options['field_title_right_two']) ? $options['field_title_right_two'] : '';
+    $fieldSubtitleRightTwo = isset($options['field_subtitle_right_two']) ? $options['field_subtitle_right_two'] : '';
+    $fieldCtaTextTwo = isset($options['field_cta_text_two']) ? $options['field_cta_text_two'] : '';
 
     $html = "";
-
     $html .=
         "
 
         <div class='titles-container'>
-            <h3> $fieldTitleOne </h3>
+            <h3 onclick=onclick='onChooseItem('retail') class='active' '>Retail</h3>
+            <h3 onclick=onclick='onChooseItem('luxury') class='inactive' '>Luxury fashion </h3>
+            <h3 onclick=onclick='onChooseItem('digital') class='inactive' '>Digital goods </h3>
+            <h3 onclick=onclick='onChooseItem('travel') class='inactive' '>Travel </h3>
+            <h3 onclick=onclick='onChooseItem('athletic') class='inactive' '>Athletic & Outdoors  </h3>
         </div>
     
     <section class='case-studies-container'> 
@@ -165,18 +188,17 @@ function custom_tabs_value_shortcode()
     
         <article class='right-side-container'>
             <div class='right-side-title-container'>
-                <h2>$fieldTitleRight</h2>
-                <p>$fieldSubtitleRight</p>
+                <h2>$fieldTitleRightOne</h2>
+                <p>$fieldSubtitleRightOne</p>
             </div>
             <div class='cta-container'>
                 <p class='arrow'>&#x2197;</p>
-                <a> $fieldCtaText </a>
+                <a> $fieldCtaTextOne</a>
             </div>
         </article>
     
     </section>
     ";
-
     return $html;
 }
 

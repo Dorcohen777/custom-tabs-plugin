@@ -1,8 +1,9 @@
 @import url("https://use.typekit.net/wuz0gtr.css");
 .titles-container {
-  width: 100%;
+  width: 80%;
   display: flex;
-  justify-content: space-around;
+  gap: 2rem;
+  overflow-x: scroll;
 }
 .titles-container h3 {
   color: #4C3EFF;
@@ -10,7 +11,21 @@
   font-weight: 700;
   font-family: "proxima-nova", sans-serif;
   border-bottom: solid #4C3EFF 3px;
-  width: fit-content;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.titles-container h3.inactive {
+  color: #CFD6DD;
+  border: 0;
+}
+.titles-container h3.inactive:hover {
+  color: #b7c2cc;
+}
+
+/* Target the scrollbar */
+.titles-container::-webkit-scrollbar {
+  width: 0;
+  /* Adjust width as needed */
 }
 
 .case-studies-container {
@@ -161,6 +176,9 @@
   }
 }
 @media (max-width: 794px) {
+  .titles-container {
+    width: 100%;
+  }
   .titles-container h3 {
     font-size: 1.25rem;
   }
