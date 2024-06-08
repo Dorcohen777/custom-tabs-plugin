@@ -19,13 +19,11 @@
   border: 0;
 }
 .titles-container h3.inactive:hover {
-  color: #b7c2cc;
+  color: #b5b9be;
 }
 
-/* Target the scrollbar */
 .titles-container::-webkit-scrollbar {
   width: 0;
-  /* Adjust width as needed */
 }
 
 .case-studies-container {
@@ -131,6 +129,29 @@
   background-color: #3d50dc;
 }
 
+.trusted-by-container {
+  display: flex;
+  place-content: center;
+  gap: 6%;
+  padding-top: 3rem;
+}
+.trusted-by-container h4 {
+  font-size: 14px;
+  font-family: "proxima-nova", sans-serif;
+  font-weight: 700;
+  color: #9EA6AE;
+}
+.trusted-by-container div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5rem;
+}
+.trusted-by-container div > * {
+  max-width: 159px;
+  max-height: 40px;
+  object-fit: contain;
+}
+
 .review-person-container {
   display: flex;
 }
@@ -174,6 +195,21 @@
   .case-studies-container .right-side-container > * {
     flex-grow: 1;
   }
+  .trusted-by-container {
+    flex-direction: column;
+  }
+  .trusted-by-container h4 {
+    margin: 0 auto;
+  }
+  .trusted-by-container div {
+    justify-content: center;
+    padding-top: 1rem;
+    gap: 3rem;
+  }
+  .trusted-by-container div > * {
+    max-width: 151px;
+    max-height: 20px;
+  }
 }
 @media (max-width: 794px) {
   .titles-container {
@@ -210,7 +246,7 @@
   .case-studies-container .left-side-container {
     background-position: bottom right;
     background-size: cover;
-    background-position: -26px 150px;
+    background-position: -100px 150px;
   }
   .case-studies-container .right-side-container .right-side-title-container h2,
   .case-studies-container .right-side-container .right-side-title-container p {
@@ -223,9 +259,7 @@
 }
 @media (max-width: 600px) {
   .case-studies-container .left-side-container {
-    background-position: bottom right;
-    background-size: cover;
-    background-position: -241px 164px;
+    background-position: -304px 192px;
   }
   .case-studies-container .left-side-container .desc-container .company-logo {
     padding-bottom: 5rem;
@@ -241,6 +275,6 @@
 }
 @media (max-width: 484px) {
   .case-studies-container .left-side-container {
-    background-position: -430px 223px;
+    background-position: -620px 343px;
   }
 }

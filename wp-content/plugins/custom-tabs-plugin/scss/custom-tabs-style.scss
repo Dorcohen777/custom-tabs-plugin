@@ -1,5 +1,7 @@
 @import url('https://use.typekit.net/wuz0gtr.css');
 
+
+
 .titles-container {
     width: 80%;
     display: flex;
@@ -20,22 +22,15 @@
             border: 0;
 
             &:hover {
-                color: darken($color: #CFD6DD, $amount: 8%);
+                color: #b5b9be;
             }
         }
     }
-
-  
-
 }
 
-  /* Target the scrollbar */
-  .titles-container::-webkit-scrollbar {
+.titles-container::-webkit-scrollbar {
     width: 0;
-    /* Adjust width as needed */
 }
-
-
 
 .case-studies-container {
     width: 100%;
@@ -96,7 +91,6 @@
             .company-logo {
                 max-width: 60.26px;
             }
-
         }
     }
 
@@ -126,13 +120,11 @@
             }
 
             p {
-
                 font-size: 1.563rem;
             }
 
             >* {
                 margin: 0;
-
             }
         }
 
@@ -165,6 +157,30 @@
     }
 }
 
+.trusted-by-container {
+    display: flex;
+    place-content: center;
+    gap: 6%;
+    padding-top: 3rem;
+    h4 {
+        font-size: 14px;
+        font-family: "proxima-nova", sans-serif;
+        font-weight: 700;
+        color: #9EA6AE;
+    }
+
+    div {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 5rem;
+        >* {
+            max-width: 159px;
+            max-height: 40px;
+            object-fit: contain;
+        }
+    }
+}
+
 .review-person-container {
     display: flex;
 
@@ -174,7 +190,6 @@
         border-radius: 50%;
     }
 }
-
 
 @media (max-width:1404px) {
     .case-studies-container {
@@ -222,25 +237,39 @@
 
         }
     }
+    .trusted-by-container {
+        flex-direction: column;
+
+        h4 {
+            margin: 0 auto;
+        }
+        div {
+            justify-content: center;
+            padding-top: 1rem;
+            gap:3rem;
+            > * {
+                max-width: 151px;
+                max-height: 20px;
+            }
+        }
+    }
 }
 
 // mobile
-
 @media (max-width: 794px) {
 
     .titles-container {
-
         width: 100%;
 
         h3 {
             font-size: 1.25rem;
-
         }
     }
 
     .case-studies-container {
 
         .left-side-container {
+
             padding: 1.375rem;
 
             .desc-container {
@@ -284,7 +313,7 @@
         .left-side-container {
             background-position: bottom right;
             background-size: cover;
-            background-position: -26px 150px;
+            background-position: -100px 150px;
         }
 
         .right-side-container {
@@ -312,9 +341,7 @@
     .case-studies-container {
 
         .left-side-container {
-            background-position: bottom right;
-            background-size: cover;
-            background-position: -241px 164px;
+            background-position: -304px 192px;
 
             .desc-container {
 
@@ -329,7 +356,6 @@
             .right-side-title-container,
             .cta-container {
                 padding: 1.375rem;
-
             }
 
             .cta-container {
@@ -344,7 +370,7 @@
 
     .case-studies-container {
         .left-side-container {
-            background-position: -430px 223px;
+            background-position: -620px 343px;
         }
     }
 }

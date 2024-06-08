@@ -15,7 +15,7 @@ add_action('wp_enqueue_scripts', 'custom_tabs_enqueue_styles');
 
 function custom_tabs_enqueue_styles()
 {
-    wp_enqueue_style('custom-tabs-styles', plugins_url('./css/custom-tabs-style.css', __FILE__));
+    wp_enqueue_style('custom-tabs-styles', plugins_url('./scss/custom-tabs-style.scss', __FILE__));
 }
 
 // Function to add the options page
@@ -182,8 +182,18 @@ function custom_tabs_value_shortcode()
                 <a> $ctaText </a>
             </div>
         </article>
-    </section>";
-
+        
+    </section>
+    <div class='trusted-by-container'>
+            <h4> TRUSTED BY </h4>
+        <div>
+            <img src='https://www.riskified.com/app/uploads/2024/02/Merchant-logos-4.png' class='trusted-img'/>
+            <img src='https://www.riskified.com/app/uploads/2024/02/Merchant-logos-1-1.png'/>
+            <img src='https://www.riskified.com/app/uploads/2024/02/Aldo.png'/>
+            <img src='https://www.riskified.com/app/uploads/2024/02/bluemercury.png'/>
+        </div>
+    </div>
+    ";
     return $html;
 }
 
