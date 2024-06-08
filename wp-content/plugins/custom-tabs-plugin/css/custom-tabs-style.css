@@ -29,6 +29,8 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-position: bottom right;
+  background-color: #F1F1F1;
+  border-radius: 15px;
 }
 .case-studies-container .left-side-container .desc-container {
   display: flex;

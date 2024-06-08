@@ -46,8 +46,8 @@ function custom_tabs_settings_init()
     // Array of field IDs
     $fields = [
         'field_title_one' => 'Title - item 1',
-        'field_description_one' => 'Description - item 1',
         'field_bold_description_one' => 'Bold Description - item 1',
+        'field_description_one' => 'Description - item 1',
         'field_person_img_one' => 'Preson URL - item 1',
         'field_person_name_one' => 'Person Name - item 1',
         'field_person_job_one' => 'Person Job - item 1',
@@ -57,6 +57,7 @@ function custom_tabs_settings_init()
         'field_subtitle_right' => 'Section subtitle right side - item 1',
         'field_cta_text' => 'CTA Text - item 1',
     ];
+
 
     // Looping over the array of fields to add settings fields 
     foreach ($fields as $field_id => $field_title) {
@@ -69,7 +70,6 @@ function custom_tabs_settings_init()
         );
     }
     ;
-
 }
 
 // Function that render and generate custom fields
@@ -142,6 +142,8 @@ function render_field_subtitle_right()
 {
     custom_render_fields('field_subtitle_right');
 }
+
+// Item 1 Call ot action text
 function render_field_cta_text()
 {
     custom_render_fields('field_cta_text');
@@ -185,7 +187,6 @@ function custom_tabs_value_shortcode()
     $fieldTitleRight = isset($options['field_title_right']) ? $options['field_title_right'] : '';
     $fieldSubtitleRight = isset($options['field_subtitle_right']) ? $options['field_subtitle_right'] : '';
     $fieldCtaText = isset($options['field_cta_text']) ? $options['field_cta_text'] : '';
-
 
     $html = "";
 
