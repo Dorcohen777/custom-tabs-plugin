@@ -43,38 +43,49 @@ function custom_tabs_settings_init()
         'custom_tabs_plugin' // Page slug
     );
 
-    // Array of field IDs
+    // Array of fields with their types
     $fields = [
-        'field_title_one' => 'Title - item 1',
-        'field_bold_description_one' => 'Bold Description - item 1',
-        'field_description_one' => 'Description - item 1',
-        'field_person_img_one' => 'Preson URL - item 1',
-        'field_person_name_one' => 'Person Name - item 1',
-        'field_person_job_one' => 'Person Job - item 1',
-        'field_brand_logo_one' => 'CaseStudy Logo - item 1',
-        'field_section_bg_one' => 'Section Background URL - item 1',
-        'field_title_right' => 'Section title right side - item 1',
-        'field_subtitle_right' => 'Section subtitle right side - item 1',
-        'field_cta_text' => 'CTA Text - item 1',
+        'field_title_one' => 'text',
+        'field_bold_description_one' => 'textarea',
+        'field_description_one' => 'textarea',
+        'field_person_img_one' => 'text',
+        'field_person_name_one' => 'text',
+        'field_person_job_one' => 'text',
+        'field_brand_logo_one' => 'text',
+        'field_section_bg_one' => 'text',
+        'field_title_right_one' => 'text',
+        'field_subtitle_right_one' => 'text',
+        'field_cta_text_one' => 'text',
+        'field_title_two' => 'text',
+        'field_bold_description_two' => 'textarea',
+        'field_description_two' => 'textarea',
+        'field_person_img_two' => 'text',
+        'field_person_name_two' => 'text',
+        'field_person_job_two' => 'text',
+        'field_brand_logo_two' => 'text',
+        'field_section_bg_two' => 'text',
+        'field_title_right_two' => 'text',
+        'field_subtitle_right_two' => 'text',
+        'field_cta_text_two' => 'text',
     ];
 
 
-    // Looping over the array of fields to add settings fields 
-    foreach ($fields as $field_id => $field_title) {
+     // Looping over the array of fields to add settings fields 
+     foreach ($fields as $field_id => $field_type) {
         add_settings_field(
             $field_id,
-            __($field_title, 'custom-tabs-plugin'),
-            "render_{$field_id}",
+            __(str_replace('_', ' ', ucwords($field_id, '_')), 'custom-tabs-plugin'), // Convert field ID to Title
+            function() use ($field_id, $field_type) {
+                custom_render_fields($field_id, $field_type);
+            },
             'custom_tabs_plugin',
             'custom_tabs_plugin_section'
         );
     }
-    ;
 }
 
-// Function that render and generate custom fields
-function custom_render_fields($field_id, $type = 'text')
-{
+// Function to render and generate custom fields
+function custom_render_fields($field_id, $type = 'text') {
     $options = get_option('custom_tabs_options');
     $value = isset($options[$field_id]) ? esc_attr($options[$field_id]) : '';
 
@@ -83,70 +94,6 @@ function custom_render_fields($field_id, $type = 'text')
     } else {
         echo "<input type='text' name='custom_tabs_options[$field_id]' value='$value'>";
     }
-}
-
-// Item 1 title
-function render_field_title_one()
-{
-    custom_render_fields('field_title_one');
-}
-
-// Item 1 bold description 
-function render_field_bold_description_one()
-{
-    custom_render_fields('field_bold_description_one', 'textarea');
-}
-
-// Item 1 description 
-function render_field_description_one()
-{
-    custom_render_fields('field_description_one', 'textarea');
-}
-
-// Item 1 person image
-function render_field_person_img_one()
-{
-    custom_render_fields('field_person_img_one');
-}
-// Item 1 person name
-function render_field_person_name_one()
-{
-    custom_render_fields('field_person_name_one');
-}
-
-// Item 1 person job
-function render_field_person_job_one()
-{
-    custom_render_fields('field_person_job_one');
-}
-
-// Item 1 logo image
-function render_field_brand_logo_one()
-{
-    custom_render_fields('field_brand_logo_one');
-}
-// Item 1 section background image
-function render_field_section_bg_one()
-{
-    custom_render_fields('field_section_bg_one');
-}
-
-// Item 1 right side title
-function render_field_title_right()
-{
-    custom_render_fields('field_title_right');
-}
-
-// Item 1 right side subtitle
-function render_field_subtitle_right()
-{
-    custom_render_fields('field_subtitle_right');
-}
-
-// Item 1 Call ot action text
-function render_field_cta_text()
-{
-    custom_render_fields('field_cta_text');
 }
 
 // Callback function to display the section description
@@ -184,9 +131,9 @@ function custom_tabs_value_shortcode()
     $fieldPersonJobOne = isset($options['field_person_job_one']) ? $options['field_person_job_one'] : '';
     $fieldBrandLogoOne = isset($options['field_brand_logo_one']) ? $options['field_brand_logo_one'] : '';
     $fieldSectionBgOne = isset($options['field_section_bg_one']) ? $options['field_section_bg_one'] : '';
-    $fieldTitleRight = isset($options['field_title_right']) ? $options['field_title_right'] : '';
-    $fieldSubtitleRight = isset($options['field_subtitle_right']) ? $options['field_subtitle_right'] : '';
-    $fieldCtaText = isset($options['field_cta_text']) ? $options['field_cta_text'] : '';
+    $fieldTitleRight = isset($options['field_title_right_one']) ? $options['field_title_right_one'] : '';
+    $fieldSubtitleRight = isset($options['field_subtitle_right_one']) ? $options['field_subtitle_right_one'] : '';
+    $fieldCtaText = isset($options['field_cta_text_one']) ? $options['field_cta_text_one'] : '';
 
     $html = "";
 
