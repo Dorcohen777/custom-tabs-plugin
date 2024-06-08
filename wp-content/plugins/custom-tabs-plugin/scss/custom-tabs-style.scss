@@ -56,7 +56,8 @@
             }
 
             .review-person-container {
-
+                align-items: center;
+                gap: 1rem;
 
                 .review-text-container {
 
@@ -199,7 +200,10 @@
     }
 }
 
+// mobile
+
 @media (max-width: 794px) {
+
     .titles-container {
 
         h3 {
@@ -240,6 +244,12 @@
 }
 
 @media (max-width: 776px) {
+
+    .titles-container {
+        justify-content: flex-start;
+        transform: translateY(20px);
+        padding: 22px;
+    }
 
     .case-studies-container {
         gap: 1rem;
@@ -292,8 +302,9 @@
             .right-side-title-container,
             .cta-container {
                 padding: 1.375rem;
-                
+
             }
+
             .cta-container {
                 display: flex;
                 flex-direction: column-reverse;
@@ -303,10 +314,10 @@
 }
 
 @media (max-width: 484px) {
-    
+
     .case-studies-container {
-        .left-side-container{
-            background-position: -411px 223px;
+        .left-side-container {
+            background-position: -430px 223px;
         }
     }
 }

@@ -49,6 +49,10 @@
 .case-studies-container .left-side-container .desc-container .desc-text {
   margin: 0;
 }
+.case-studies-container .left-side-container .desc-container .review-person-container {
+  align-items: center;
+  gap: 1rem;
+}
 .case-studies-container .left-side-container .desc-container .review-person-container .review-text-container .review-name,
 .case-studies-container .left-side-container .desc-container .review-person-container .review-text-container .review-job {
   font-size: 1.125rem;
@@ -175,6 +179,11 @@
   }
 }
 @media (max-width: 776px) {
+  .titles-container {
+    justify-content: flex-start;
+    transform: translateY(20px);
+    padding: 22px;
+  }
   .case-studies-container {
     gap: 1rem;
   }
@@ -212,6 +221,6 @@
 }
 @media (max-width: 484px) {
   .case-studies-container .left-side-container {
-    background-position: -411px 223px;
+    background-position: -430px 223px;
   }
 }

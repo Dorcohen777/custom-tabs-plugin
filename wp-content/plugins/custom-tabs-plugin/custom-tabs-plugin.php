@@ -10,21 +10,12 @@ add_action('admin_menu', 'custom_tabs_add_admin_menu');
 // Hook to register settings
 add_action('admin_init', 'custom_tabs_settings_init');
 
-// Hook into WordPress enqueue scripts function
-// add_action('wp_enqueue_scripts', 'custom_tabs_enqueue_styles');
-
-// function custom_tabs_enqueue_styles()
-// {
-//     $file_url = plugins_url('./css/custom-tabs-style.css', __FILE__);
-//     wp_register_style('custom-tabs-styles', $file_url );
-//     wp_enqueue_style('custom-tabs-styles');
-// }
-
+// Hook to load styles 
 add_action('wp_enqueue_scripts', 'custom_tabs_enqueue_styles');
 
 function custom_tabs_enqueue_styles()
 {
-    wp_enqueue_style('custom-tabs-styles', plugins_url('./scss/custom-tabs-style.scss', __FILE__));
+    wp_enqueue_style('custom-tabs-styles', plugins_url('./css/custom-tabs-style.css', __FILE__));
 }
 
 
